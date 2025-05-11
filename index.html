@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>6x6 Click Counter Grid</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 60px);
+      grid-template-rows: repeat(6, 60px);
+      gap: 10px;
+    }
+    .box {
+      background: #fff;
+      border: 2px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s;
+    }
+    .box.clicked {
+      background: #4caf50;
+      color: white;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const grid = document.getElementById("grid");
+    let count = 0;
+
+    for (let i = 0; i < 36; i++) {
+      const box = document.createElement("div");
+      box.classList.add("box");
+      box.addEventListener("click", () => {
+        if (count < 10 && !box.classList.contains("clicked")) {
+          count++;
+          box.textContent = count;
+          box.classList.add("clicked");
+        }
+      });
+      grid.appendChild(box);
+    }
+  </script>
+</body>
+</html>
